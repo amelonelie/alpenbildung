@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum - Alpenbildung</title>
+   <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8f8f6;
+            color: #2a2a2a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            padding: 40px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0000C8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+            margin-bottom: 20px;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2a2a2a;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0 80px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .info-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #0000C8;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 200, 0.15);
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            color: #0000C8;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .info-card p {
+            font-size: 1rem;
+            color: #2a2a2a;
+            line-height: 1.8;
+        }
+
+        .info-card a {
+            color: #0000C8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .info-card a:hover {
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #ffffff;
+            padding: 40px 0;
+            text-align: center;
+            color: #666;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        footer p {
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .info-card {
+                padding: 30px 25px;
+            }
+
+            .info-card h3 {
+                font-size: 1.2rem;
+            }
+
+            main {
+                padding: 40px 0 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+            <h1>Impressum</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="cards-grid">
+                <div class="info-card">
+                    <h3>Angaben gemäß § 5 TMG</h3>
+                    <p>
+                        Amelie Meyer<br>
+                        Ponteilstraße 4<br>
+                        86152 Augsburg<br>
+                        <br>
+                        E-Mail: alpenbildung@gmail.com<br>
+                        Telefon: +49 176 45651424
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Gewerbeanmeldung</h3>
+                    <p>
+                        Die Gewerbeanmeldung nach § 14 oder § 55c GewO wurde am 12.07.2023 durch das Ordnungsamt Stadt Augsburg erteilt.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3>USt-IdNr.</h3>
+                    <p>DE362317567</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>EU-Streitschlichtung</h3>
+                    <p>
+                        Die Europäische Kommission stellt <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">hier</a> eine Plattform zur Online-Streitbeilegung (OS) bereit.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h3>
+                    <p>
+                        Hinweis zu § 36 VSBG: Wir nehmen an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle nicht teil und sind dazu auch nicht verpflichtet.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Rechtliche Hinweise</h3>
+                    <p>
+                        Google Play und das Google Play-Logo sind Marken von Google LLC.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Alpenbildung. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+</body>
+</html>

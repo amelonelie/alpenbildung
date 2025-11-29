@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Risky Rudi - Ein Kartenspiel zur Kommunikation von Hochwasserrisiken und Schutzmaßnahmen" />
+    <title>Risky Rudi - Alpenbildung</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8f8f6;
+            color: #2a2a2a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            padding: 40px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0000C8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+            margin-bottom: 30px;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .project-header {
+            text-align: center;
+        }
+
+        .project-logo {
+            max-width: 450px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 30px;
+            display: block;
+        }
+
+        .project-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0 80px;
+        }
+
+        .intro-section {
+            background-color: #ffffff;
+            padding: 60px;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .intro-section h2 {
+            font-size: 2rem;
+            color: #0000C8;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #2a2a2a;
+            line-height: 1.8;
+        }
+
+        /* Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .feature-card:nth-child(1) {
+            border-top-color: #e12729;
+        }
+
+        .feature-card:nth-child(2) {
+            border-top-color: #f37324;
+        }
+
+        .feature-card:nth-child(3) {
+            border-top-color: #f8cc1b;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-card:nth-child(1):hover {
+            box-shadow: 0 8px 30px rgba(225, 39, 41, 0.25);
+        }
+
+        .feature-card:nth-child(2):hover {
+            box-shadow: 0 8px 30px rgba(243, 115, 36, 0.25);
+        }
+
+        .feature-card:nth-child(3):hover {
+            box-shadow: 0 8px 30px rgba(248, 204, 27, 0.25);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .feature-card:nth-child(1) .feature-icon {
+            background-color: #e12729;
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background-color: #f37324;
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background-color: #f8cc1b;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #2a2a2a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Email Form Section */
+        .email-section {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid #f37324;
+        }
+
+        .email-section h2 {
+            font-size: 2rem;
+            color: #f37324;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .email-section p {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+        }
+
+        .email-form label {
+            font-size: 1rem;
+            color: #2a2a2a;
+            font-weight: 500;
+        }
+
+        .email-form input[type="email"] {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            transition: border-color 0.3s ease;
+        }
+
+        .email-form input[type="email"]:focus {
+            outline: none;
+            border-color: #f37324;
+        }
+
+        .email-form button {
+            padding: 12px 40px;
+            background-color: #f37324;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .email-form button:hover {
+            background-color: #d85e1a;
+            transform: translateY(-2px);
+        }
+
+        .egu-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #0000C8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .egu-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Known From Section */
+        .known-from-section {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid #f8cc1b;
+        }
+
+        .known-from-section h2 {
+            font-size: 2rem;
+            color: #f8cc1b;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .known-from-section p {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .egu-logo-link {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .egu-logo-link:hover {
+            transform: translateY(-5px);
+        }
+
+        .egu-logo {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .egu-description {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        /* Detail Section */
+        .detail-section {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 6px solid #e12729;
+        }
+
+        .detail-section h2 {
+            font-size: 2rem;
+            color: #e12729;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .detail-section p {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+       footer {
+            background-color: #ffffff;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            color: #0000C8;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            color: #0000C8;
+        }
+
+        .footer-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .intro-section {
+                padding: 40px 30px;
+            }
+
+            .intro-section h2 {
+                font-size: 1.7rem;
+            }
+
+            .email-section {
+                padding: 35px 25px;
+            }
+
+            .email-section h2 {
+                font-size: 1.7rem;
+            }
+
+            .detail-section {
+                padding: 35px 25px;
+            }
+
+            .detail-section h2 {
+                font-size: 1.7rem;
+            }
+
+            .known-from-section {
+                padding: 35px 25px;
+            }
+
+            .known-from-section h2 {
+                font-size: 1.7rem;
+            }
+
+            .egu-logo {
+                max-width: 250px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .feature-card {
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-link">← Zurück zur Übersicht</a>
+            <div class="project-header">
+                <img src="Risky_Rudi_Logo.png" alt="Risky Rudi Logo" class="project-logo">
+                <p class="project-subtitle">Ein Kartenspiel zur Kommunikation von Hochwasserrisiken und Schutzmaßnahmen</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="intro-section">
+                <h2>Über das Projekt</h2>
+                <p>
+                    Risky Rudi basiert auf den drei Dimensionen des Risikos: Gefährdung, Vulnerabilität und Exposition. Durch die explizite Kategorisierung von Risikominderungsmaßnahmen nach diesen drei Dimensionen entwickeln die Spieler ein intuitives Verständnis für die vielschichtige Natur von Hochwasserrisiken und wie verschiedene Arten von Maßnahmen zusammenwirken, um die Widerstandsfähigkeit einer Gemeinschaft aufzubauen.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💧</div>
+                    <h3>Gefährdung</h3>
+                    <p>Verstehe die Ursachen und Auswirkungen von Hochwasserereignissen</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏘️</div>
+                    <h3>Vulnerabilität</h3>
+                    <p>Erkenne anfällige Strukturen und lerne, wie man sie schützen kann</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Exposition</h3>
+                    <p>Minimiere Risiken durch strategische Planung und Prävention</p>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h2>Spielprinzip</h2>
+                <p>
+                    Risky Rudi ist ein kooperatives Kartenspiel, bei dem die Spieler gemeinsam eine fiktive Gemeinde vor Hochwasser schützen müssen. Durch den Einsatz verschiedener Schutzmaßnahmen aus den Bereichen Gefährdung, Vulnerabilität und Exposition lernen die Teilnehmer spielerisch, wie integriertes Hochwasserrisikomanagement funktioniert. Das Spiel eignet sich hervorragend für Bildungseinrichtungen, Workshops und alle, die sich mit Naturgefahren und Risikokommunikation beschäftigen.
+                </p>
+            </div>
+
+            <div class="email-section">
+                <h2>Auf die Warteliste setzen</h2>
+                <p>
+                    Das Kartenspiel wird demnächst veröffentlicht! Registriere dich jetzt, um benachrichtigt zu werden, sobald das Spiel verfügbar ist.
+                </p>
+                <form class="email-form" action="https://formspree.io/f/xpwqvagy" method="POST">
+                    <label for="email">Deine E-Mail-Adresse:</label>
+                    <input type="email" id="email" name="email" required placeholder="deine@email.de">
+                    <button type="submit">Benachrichtige mich</button>
+                </form>
+            </div>
+
+            <div class="known-from-section">
+                <h2>Wissenschaftlich fundiert</h2>
+                <p>
+                    Risky Rudi wurde auf der renommierten EGU 2025 Konferenz (European Geosciences Union) der wissenschaftlichen Community präsentiert und basiert auf aktuellen Erkenntnissen der Risikoforschung.
+                </p>
+                <a href="https://meetingorganizer.copernicus.org/EGU25/EGU25-953.html" class="egu-logo-link" target="_blank" rel="noopener noreferrer">
+                    <img src="egu_logo.png" alt="EGU 2025" class="egu-logo">
+                </a>
+                <p class="egu-description">→ Zur Präsentation bei der EGU 2025 Konferenz</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+               <img src="/Users/amelonelie/Documents/alpenbildung/logo_fuchs.png" alt="Logo Fuchs" class="footer-logo">
+            <p>&copy; 2025 Alpenbildung. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+</body>
+</html>

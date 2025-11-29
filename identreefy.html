@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="identreefy - App zur Bestimmung von Gehölzen im Winterzustand. Nur 10 Merkmale notwendig, offline nutzbar!" />
+    <title>identreefy - Alpenbildung</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8f8f6;
+            color: #2a2a2a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            padding: 40px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0000C8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+            margin-bottom: 30px;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .project-header {
+            text-align: center;
+        }
+
+        .project-logo {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 30px;
+            display: block;
+        }
+
+        .project-title {
+            font-size: 3rem;
+            color: #2a2a2a;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .project-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .app-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .app-badges a {
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .app-badges a:hover {
+            transform: translateY(-5px);
+        }
+
+        .app-badges img {
+            height: 50px;
+            width: auto;
+        }
+
+        /* Hero Image */
+        .hero-image {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            border-radius: 20px;
+            margin: 40px auto;
+            display: block;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0 80px;
+        }
+
+        .intro-section {
+            background-color: #ffffff;
+            padding: 60px;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .intro-section h2 {
+            font-size: 2rem;
+            color: #0000C8;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            color: #2a2a2a;
+            line-height: 1.8;
+        }
+
+        /* Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .feature-card:nth-child(1) {
+            border-top-color: #3C4024;
+        }
+
+        .feature-card:nth-child(2) {
+            border-top-color: #F2C744;
+        }
+
+        .feature-card:nth-child(3) {
+            border-top-color: #F2A341;
+        }
+
+        .feature-card:nth-child(4) {
+            border-top-color: #A63F03;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-card:nth-child(1):hover {
+            box-shadow: 0 8px 30px rgba(60, 64, 36, 0.25);
+        }
+
+        .feature-card:nth-child(2):hover {
+            box-shadow: 0 8px 30px rgba(242, 199, 68, 0.25);
+        }
+
+        .feature-card:nth-child(3):hover {
+            box-shadow: 0 8px 30px rgba(242, 163, 65, 0.25);
+        }
+
+        .feature-card:nth-child(4):hover {
+            box-shadow: 0 8px 30px rgba(166, 63, 3, 0.25);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .feature-card:nth-child(1) .feature-icon {
+            background-color: #3C4024;
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background-color: #F2C744;
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background-color: #F2A341;
+        }
+
+        .feature-card:nth-child(4) .feature-icon {
+            background-color: #A63F03;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: #2a2a2a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Detail Sections */
+        .detail-section {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap;
+            border-left: 6px solid transparent;
+        }
+
+        .detail-section:nth-child(3) {
+            border-left-color: #3C4024;
+        }
+
+        .detail-section:nth-child(4) {
+            border-left-color: #F2C744;
+        }
+
+        .detail-section:nth-child(5) {
+            border-left-color: #F2A341;
+        }
+
+        .detail-section:nth-child(6) {
+            border-left-color: #A63F03;
+        }
+
+        .detail-section:nth-child(even) {
+            flex-direction: row;
+        }
+
+        .detail-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .detail-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .detail-section:nth-child(3) .detail-content h2 {
+            color: #3C4024;
+        }
+
+        .detail-section:nth-child(4) .detail-content h2 {
+            color: #F2C744;
+        }
+
+        .detail-section:nth-child(5) .detail-content h2 {
+            color: #F2A341;
+        }
+
+        .detail-section:nth-child(6) .detail-content h2 {
+            color: #A63F03;
+        }
+
+        .detail-content p {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            line-height: 1.8;
+        }
+
+        .detail-image {
+            flex: 0 0 auto;
+            max-width: 350px;
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+         /* Usage Section */
+        .usage-section {
+            margin: 80px 0 40px;
+            padding: 0;
+        }
+
+        .usage-section h2 {
+            font-size: 2rem;
+            color: #2a2a2a;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .usage-description {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        .logos-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .logo-link {
+            display: block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #ffffff;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo-link:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .partner-logo {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Footer */
+       footer {
+            background-color: #ffffff;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            color: #0000C8;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            color: #0000C8;
+        }
+
+        .footer-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2.2rem;
+            }
+
+            .project-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .intro-section {
+                padding: 40px 30px;
+            }
+
+            .intro-section h2 {
+                font-size: 1.7rem;
+            }
+
+            .detail-section {
+                padding: 35px 25px;
+                gap: 30px;
+            }
+
+            .detail-section:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .detail-content h2 {
+                font-size: 1.7rem;
+            }
+
+            .detail-image {
+                max-width: 100%;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .feature-card {
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="back-link">← Zurück zur Übersicht</a>
+            <div class="project-header">
+                <img src="logo_ohne_slogan_mini.png" alt="identreefy Logo" class="project-logo">
+                <h1 class="project-title">identreefy</h1>
+                <p class="project-subtitle">Bäume im Winter mit nur 10 Merkmalen bestimmen!</p>
+                <div class="app-badges">
+                    <a href="https://play.google.com/store/apps/details?id=com.identreefy.app&pli=1" target="_blank" rel="noopener noreferrer">
+                        <img src="google-play-badge.png" alt="Get it on Google Play">
+                    </a>
+                    <a href="https://apps.apple.com/de/app/identreefy/id6470992013" target="_blank" rel="noopener noreferrer">
+                        <img src="appstore.svg" alt="Download on the Apple Store">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="intro-section">
+                <h2>Über das Projekt</h2>
+                <p>
+                    
+Im Winter verlieren viele Laubgehölze ihre Blätter, was die Bestimmung von Bäumen und Sträuchern erschwert. Dabei ist es oft wichtig, Arten auch in der laubfreien Zeit eindeutig zu erkennen.
+identreefy macht dies einfach möglich: Die App unterstützt dich Schritt für Schritt bei der Bestimmung von Gehölzen direkt im Feld. Anhand von Knospen-, Trieb- und anderen Merkmalen führt die App durch den Bestimmungsprozess und liefert zuverlässige Ergebnisse.
+Mit identreefy wird das Erkennen von Bäumen und Sträuchern im Winter zugänglich für alle, die Natur entdecken, lernen oder wissenschaftlich arbeiten möchten.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌳</div>
+                    <h3>134 Arten</h3>
+                    <p>Umfassende Datenbank mit allen wichtigen mitteleuropäischen Gehölzarten</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Offline nutzbar</h3>
+                    <p>Bestimme Pflanzen auch ohne Internetverbindung direkt im Feld</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>10 Merkmale</h3>
+                    <p>Präzise Bestimmung mit nur wenigen, einfach erkennbaren Merkmalen</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Glossar</h3>
+                    <p>Umfangreiches Nachschlagewerk mit illustrierten Begriffserklärungen</p>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-image">
+                    <img src="Bestimmung.png" alt="Bestimmungsfunktion">
+                </div>
+                <div class="detail-content">
+                    <h2>Bestimmung</h2>
+                    <p>
+                        Das zentrale Feature von identreefy ist die Bestimmungsfunktion. Mit bis zu zehn Merkmalen können Sie ein Gehölz bestimmen und eine individuelle Merkmalskombination erstellen. Die App gleicht diese Merkmale mit der zugrunde liegenden Datenbank ab und liefert die passenden Arten. In vielen Fällen ist das Ergebnis eindeutig, in anderen erhalten Sie eine kleine Auswahl von Arten, die Sie dann anhand von Fotos und kurzen Artbeschreibungen weiter eingrenzen können. So wird die Bestimmung selbst im winterlichen Zustand einfach und zuverlässig. </p>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-content">
+                    <h2>Artenliste</h2>
+                    <p>
+                      Die Artenliste enthält alle 134 Arten, die mit identreefy bestimmt werden können. Jede Art wird mit einem ausführlichen Portrait vorgestellt: wissenschaftlicher Name, gängige deutsche Namen, mehrere Bilder von Zweigen und Knospen sowie die charakteristischen Merkmalsausprägungen. Damit erhalten Sie nicht nur die Informationen für die Bestimmung, sondern auch einen tieferen Einblick in jede Art. </p>
+                </div>
+                <div class="detail-image">
+                    <img src="Artenliste.png" alt="Artenliste">
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-image">
+                    <img src="Glossar.png" alt="Glossar">
+                </div>
+                <div class="detail-content">
+                    <h2>Glossar</h2>
+                    <p>
+                     Im Glossar finden Sie verständliche Erklärungen zu allen relevanten Fachbegriffen, die für die Bestimmung notwendig sind. Anschauliche Illustrationen erleichtern das Verständnis und machen das Glossar zu einer wertvollen Hilfe, um Ihre Kenntnisse zu erweitern und Sie bei jedem Schritt der Bestimmung zu unterstützen. </p>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-content">
+                    <h2>Meine Bestimmungen</h2>
+                    <p>
+                        Jede Bestimmung, die Sie getätigt haben, können Sie im Bereich „meine Bestimmungen" speichern. Die gespeicherten Einträge können jederzeit wieder angesehen werden und erleichtern daher zukünftige Bestimmungen. 
+                         Bei einem Eintrag werden die bestimmte Art, Datum und Uhrzeit sowie (wenn erwünscht) der Standort der Bestimmung gespeichert. Wenn Sie möchten, können Sie auch noch eine persönliche Notiz hinzufügen. 
+                    </p>
+                </div>
+                <div class="detail-image">
+                    <img src="meineBestimmungen.png" alt="Meine Bestimmungen">
+                </div>
+            </div>
+                <!-- In Verwendung Section -->
+            <div class="usage-section">
+                <h2>In Verwendung bei</h2>
+                <p class="usage-description">
+                    identreefy wird bereits erfolgreich in der Praxis eingesetzt und unterstützt Bildungseinrichtungen sowie Naturschutzorganisationen bei der Gehölzbestimmung.
+                </p>
+                <div class="logos-grid">
+                    <a href="https://www.uni-bayreuth.de" target="_blank" rel="noopener noreferrer" class="logo-link">
+                        <img src="unibt_logo.png" alt="Universität Bayreuth" class="partner-logo">
+                    </a>
+                    <a href="https://www.obg.uni-bayreuth.de/de/index.html" target="_blank" rel="noopener noreferrer" class="logo-link">
+                        <img src="oebg_logo.jpg" alt="Ökologisch-Botanischer Garten Bayreuth" class="partner-logo">
+                    </a>
+                    <a href="https://www.anl.bayern.de" target="_blank" rel="noopener noreferrer" class="logo-link">
+                        <img src="ANL_Logo.jpg" alt="Bayerische Akademie für Naturschutz und Landschaftspflege" class="partner-logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+               <img src="/Users/amelonelie/Documents/alpenbildung/logo_fuchs.png" alt="Logo Fuchs" class="footer-logo">
+            <p>&copy; 2025 Alpenbildung. Alle Rechte vorbehalten.</p>
+            <p> 
+                <a href="datenschutz_app.html" target="_blank">Datenschutzerklärung für die App</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
